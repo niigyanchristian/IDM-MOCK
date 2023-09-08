@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Statistics</title>
+</head>
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      a{
+        text-decoration: none;
+      }
+
+      body{
+        background-color: #e9efff;
+      }
+</style>
+<script>
+  let data;
+  // addEventListener
+  function myFunction() {
+     data=document.getElementById("myText").value;
+    // direct()
+}
+
+function direct(){
+// myFunction()
+window.location.href = "/stats/"+data;
+}
+</script>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="#">MockRoom</a>
+          <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon text-white"></span>
+          </button>
+          <div class="collapse navbar-collapse ms-lg-5" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link text-white mx-3 active" aria-current="page" href="/dashboard">Dashboard</a>
+              <a class="nav-link text-white mx-3" href="#">All mocks</a>
+            </div>
+          </div>
+        </div>
+    </nav>
+    
+    <div class="col-10 col-md-8 text-center m-auto">
+        <p class="mt-4">Choose mock to view results</p>
+        <div class="rounded-4" style="height: 45%;">
+            <div class="form-group">
+                <select class="form-control" id="myText" name="mockId" onchange="myFunction()">
+                  <option id="getr">Select--</option>
+                    <% mock.forEach((item)=>{ %>
+                    <option value="<%= item._id %>" id="getr"><%= item.mockName %></option>
+                    <% }) %>
+                </select>
+              </div>
+              <div class="justify-content-end d-flex mt-2">
+                <button type="button" class="btn btn-primary" onclick="direct()">Submit</button>
+              </div>
+        </div>
+        <div class="mt-5">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>    
+
+    
+
+    
+    <footer style="margin-top: 200px; background: #4e6166; color: white;">
+      <div class="align-content-center p-2 d-flex " style="height: auto; width: 60%;">
+         <a href="#" class="text-dark h3 align-content-center align-items-center text-white">MockRoom</a>
+         <div class=" ms-5 mt-2 d-flex">
+           <p class="text-dark h5 text-white">Useful links</p>
+           <div class="d-flex ms-2">
+             <a href="#" class="text-dark d-block text-white">| Create mock</a>
+             <a href="#" class="text-dark d-block ms-2 text-white">| All Mocks</a>
+           </div>
+         </div>
+         
+      </div>
+      <p class="d-flex justify-content-end mx-4 text-white">copyright &copy; Nii-Gyan Christian</p>
+   
+     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script>
+        const ctx = document.getElementById('myChart');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['English', 'Maths', 'Social', 'Science', 'BDT', 'RME','ICT','TWI', 'French'],
+            datasets: [{
+              label: '# of <%=mockName%>',
+              data: [<%=English%>, <%=Maths%>, <%=Social%>, <%=Science%>, <%=BDT%>,<%=RME%>,<%=ICT%>,<%=TWI%>, <%=French%>],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      </script>
+</body>
+</html>
